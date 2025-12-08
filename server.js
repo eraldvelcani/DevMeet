@@ -6,7 +6,12 @@ const app = express();
 
 connectDB();
 
-app.get('/', (req, res) => res.send('API Running'));
+//Middleware
+app.use(express.json({ extended: false }));
+
+app.get('/', (req, res) => {
+    res.send('API Running');
+});
 
 //Define routes
 app.use('/api/users', require('./routes/api/users'))

@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://eradl_db_user:lT7ZrilqYuwQsKGV@cluster0.n8eey0r.mongodb.net/?appName=Cluster0"
+    "mongoURI": "mongodb+srv://eradl_db_user:OcfJ0Pq1DJVKvYQs@cluster0.n8eey0r.mongodb.net/?appName=Cluster0",
+    "jwtSecret": "mysecrettoken"
 }
