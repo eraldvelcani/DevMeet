@@ -61,7 +61,7 @@ const ProfSchema = new mongoose.Schema({
                 type: String
             },
             duration: {
-                type: Number
+                type: String
             },
             currentlyStudying: {
                 type: Boolean,
