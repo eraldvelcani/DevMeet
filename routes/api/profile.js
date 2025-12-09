@@ -82,7 +82,7 @@ router.get('/', async (req, res) => {
         console.error(error);
         res.status(500).send('Server Error!');
     }
-})
+});
 
 //@route GET api/profile/user/:user_id
 //@desc Get profile by user_id
@@ -97,6 +97,21 @@ router.get('/user/:user_id', async (req, res) => {
         if (error.kind === "ObjectId") return res.status(400).json({ msg: "Profile not found." });
         res.status(500).send('Server Error!');
     }
-})
+});
+
+//@route DELETE api/profile
+//@desc Delete profile
+//@access Private
+router.delete('/', auth, async (req, res) => { //<-- auth middleware for private routes
+    try {
+        await Profile.findOneAndDelete({ user: req.user.id });
+        await User.findOneAndDelete({ _id: req.user.id });
+        res.json({ msg: 'User Removed' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server Error!');
+    }
+});
+
 
 module.exports = router;
