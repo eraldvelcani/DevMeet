@@ -26,7 +26,7 @@ const ProfSchema = new mongoose.Schema({
     },
 
 
-    experiece: [
+    experience: [
         {
             title: {
                 type: String,
@@ -37,7 +37,7 @@ const ProfSchema = new mongoose.Schema({
                 required: true
             },
             duration: {
-                type: Number
+                type: String
             },
             currentPosition: {
                 type: Boolean,
