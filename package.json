@@ -9,9 +9,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
-    "server": "nodemon server"
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.1",
     "bcryptjs": "^3.0.3",
     "config": "^4.1.1",
     "express": "^5.2.1",
@@ -19,10 +22,12 @@
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.0.1",
+    "react-redux": "^9.2.0",
     "request": "^2.88.2"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",
     "nodemon": "^3.1.11"
-  }
+  },
+  "proxy": "http://localhost:4000"
 }
