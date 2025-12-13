@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from "../../actions/alert";
 import { register } from "../../actions/auth";
 import PropTypes from 'prop-types'
 
-const Register = ({ setAlert, register }) => {
+const Register = ({ setAlert, register, isAuth }) => {
     const [formData, setFormData] = useState({name: '', email: '', password: '', password2: ''});
     const { name, email, password, password2 } = formData;
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,6 +34,10 @@ const Register = ({ setAlert, register }) => {
             //     console.error(error.response.data);
             // }
         }
+    }
+
+    if (isAuth) {
+        return <Navigate to='/dashboard' />
     }
 
     return (
@@ -74,9 +78,14 @@ const Register = ({ setAlert, register }) => {
     )
 };
 
+const mapStateToProps = state => ({
+    isAuth: state.auth.isAuthenticated
+});
+
 Register.propTypes = {
     setAlert: PropTypes.func.isRequired,
-    register: PropTypes.func.isRequired
+    register: PropTypes.func.isRequired,
+    isAuth: PropTypes.bool
 };
 
-export default connect(null, { setAlert, register })(Register);
+export default connect(mapStateToProps, { setAlert, register })(Register);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { connect } from "react-redux";
 import { login } from '../../actions/auth';
 
@@ -31,6 +31,9 @@ const Login = ({ login, isAuth }) => { //props declared below
             // }
         }
     
+    if (isAuth) {
+        return <Navigate to="/dashboard" />
+    }
 
     return (
     <>
@@ -68,4 +71,4 @@ login.propTypes = {
 };
 
 
-export default connect(null, { login })(Login);
+export default connect(mapStateToProps, { login })(Login);
